@@ -1,10 +1,28 @@
+import contextlib
 import unittest
 
 from python_streams import Stream
 
 
 class TestStream(unittest.TestCase):
-    def test_stream_closed(self):
+    def test_stream_context_closes(self):
+        seed = ["a", "b"]
+
+        with contextlib.suppress(RuntimeWarning):
+            with Stream(seed) as s:
+                self.assertTrue(s.open)
+
+        self.assertFalse(s.open)
+
+    def test_stream_terminal_closes(self):
+        seed = ["a", "b"]
+
+        s = Stream(seed)
+        self.assertTrue(s.open)
+        s.to_list()
+        self.assertFalse(s.open)
+
+    def test_stream_closed_error(self):
         seed = ["a", "b"]
 
         s = Stream(seed)
