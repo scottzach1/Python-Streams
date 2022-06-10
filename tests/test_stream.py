@@ -12,6 +12,14 @@ class TestStream(unittest.TestCase):
 
         self.assertEqual(seed, s.to_list())
 
+    def test_stream_closed(self):
+        seed = ["a", "b"]
+
+        s = Stream(seed)
+        s.to_list()
+        with self.assertRaises(RuntimeError):
+            s.to_list()
+
     def test_apply(self):
         seed = [1, 2, 3]
 
