@@ -73,3 +73,7 @@ class Stream:
     @_terminal
     def reduce(self, f: Callable[[T, T], T]) -> T:
         return functools.reduce(f, self.iterable)
+
+    @_terminal
+    def count(self):
+        return sum(1 for _ in self.iterable)

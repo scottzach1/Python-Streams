@@ -36,3 +36,9 @@ class TestTerminal(unittest.TestCase):
         s = Stream(seed)
 
         self.assertEqual(s.reduce(str.__add__), "abc")
+
+    def test_count(self):
+        seed = range(100)
+        s = Stream(seed)
+
+        self.assertEqual(s.count(), 100)
