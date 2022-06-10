@@ -46,3 +46,20 @@ class TestStream(unittest.TestCase):
         s.apply(double)
 
         self.assertEqual(s.to_list(), [double(n) for n in seed])
+
+    def test_method_chaining(self):
+        seed = [1, 2, 3]
+
+        def double(n: int) -> int:
+            return n * 2
+
+        with Stream(seed) as s1:
+            s1.apply(double)
+            s1.apply(double)
+
+            res1 = s1.to_list()
+
+        with Stream(seed) as s2:
+            res2 = s2.apply(double).apply(double).to_list()
+
+        self.assertEqual(res1, res2)
