@@ -1,6 +1,6 @@
 import unittest
 
-from python_streams.steams import Stream
+from python_streams import Stream
 
 
 class TestStream(unittest.TestCase):
