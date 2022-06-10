@@ -54,6 +54,11 @@ class Stream:
         self.iterable = (f(t) for t in self.iterable)
         return self
 
+    @_operation
+    def filter(self, f: Callable[[T], bool]) -> "Stream":
+        self.iterable = (t for t in self.iterable if f(t))
+        return self
+
     @_terminal
     def to_list(self) -> List[T]:
         return list(self.iterable)

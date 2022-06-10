@@ -14,3 +14,14 @@ class TestOperation(unittest.TestCase):
         s.apply(double)
 
         self.assertEqual(s.to_list(), [double(n) for n in seed])
+
+    def test_filter(self):
+        seed = range(100)
+
+        def even(n: int) -> bool:
+            return n % 2 == 0
+
+        s = Stream(seed)
+        s.filter(even)
+
+        self.assertEqual(s.to_list(), list(range(0, 100, 2)))
