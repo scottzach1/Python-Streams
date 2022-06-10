@@ -45,6 +45,18 @@ class TestTerminal(unittest.TestCase):
 
         self.assertEqual(s.count(), 100)
 
+    def test_empty_true(self):
+        seed = []
+        s = Stream(seed)
+
+        self.assertTrue(s.empty())
+
+    def test_empty_false(self):
+        seed = ["a", "b", "c"]
+        s = Stream(seed)
+
+        self.assertFalse(s.empty())
+
     def test_foreach(self):
         seed = ["a", "b", "c"]
         s = Stream(seed)

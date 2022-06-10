@@ -89,6 +89,14 @@ class Stream:
         return sum(1 for _ in self.iterable)
 
     @_terminal
+    def empty(self) -> bool:
+        try:
+            next(self.iterable)
+            return False
+        except StopIteration:
+            return True
+
+    @_terminal
     def foreach(self, f: Callable[[T], None]) -> None:
         for t in self.iterable:
             f(t)
