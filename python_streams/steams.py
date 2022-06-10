@@ -23,6 +23,9 @@ class Stream:
         self.iterable = iter(iterable)
         self.open = True
 
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.open = False
+
     @_open
     def to_list(self) -> List[T]:
         self.open = False
