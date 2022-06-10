@@ -20,6 +20,13 @@ class TestStream(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             s.to_list()
 
+    def test_stream_unexpected_close_warning(self):
+        seed = ["a", "b"]
+
+        with self.assertWarns(RuntimeWarning):
+            with Stream(seed) as _s:
+                pass
+
     def test_stream_closed_context_manager(self):
         seed = ["a", "b"]
 

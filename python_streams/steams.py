@@ -1,4 +1,5 @@
 import functools
+import warnings
 from typing import Iterable, TypeVar, Iterator, List, Callable
 
 T = TypeVar("T")
@@ -27,6 +28,8 @@ class Stream:
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
+        if self.open:
+            warnings.warn("The stream was not closed", RuntimeWarning)
         self.open = False
 
     @_open
