@@ -54,3 +54,12 @@ class TestTerminal(unittest.TestCase):
             s.foreach(lambda n: print(f"_{n}", end=""))
 
         self.assertEqual(f.getvalue(), "".join((f"_{s}" for s in seed)))
+
+    def test_find(self):
+        seed = ["aerosmith", "beatles", "car"]
+        s = Stream(seed)
+
+        def find(text: str) -> bool:
+            return text.startswith("b")
+
+        self.assertEqual(s.find(find), "beatles")

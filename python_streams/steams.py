@@ -1,6 +1,6 @@
 import functools
 import warnings
-from typing import Iterable, TypeVar, Iterator, List, Callable
+from typing import Iterable, TypeVar, Iterator, List, Callable, Optional
 
 T = TypeVar("T")
 
@@ -92,3 +92,7 @@ class Stream:
     def foreach(self, f: Callable[[T], None]) -> None:
         for t in self.iterable:
             f(t)
+
+    @_terminal
+    def find(self, f: Callable[[T], bool], default: T = None) -> Optional[T]:
+        return next(filter(f, self.iterable), default)
