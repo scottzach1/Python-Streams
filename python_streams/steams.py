@@ -39,6 +39,12 @@ class Stream:
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
+        self._verify_closed()
+
+    def __del__(self):
+        self._verify_closed()
+
+    def _verify_closed(self):
         if self.open:
             warnings.warn("The stream was not closed", RuntimeWarning)
         self.open = False
@@ -65,5 +71,5 @@ class Stream:
         return set(self.iterable)
 
     @_terminal
-    def reduce(self, f: Callable[[T], T]) -> T:
+    def reduce(self, f: Callable[[T, T], T]) -> T:
         return functools.reduce(f, self.iterable)
