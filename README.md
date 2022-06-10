@@ -80,9 +80,7 @@ Or alternatively by adding the following to your `requirements.txt` file.
 python-streams @ git+https://github.com/scottzach1/python-streams.git
 ```
 
-## Author
-
-## Team
+## Authors
 
 This package is developed and maintained by the following person(s).
 
