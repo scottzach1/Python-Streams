@@ -59,6 +59,11 @@ class Stream:
         self.iterable = (t for t in self.iterable if f(t))
         return self
 
+    @_operation
+    def reversed(self) -> "Stream":
+        self.iterable = reversed(tuple(self.iterable))
+        return self
+
     @_terminal
     def to_list(self) -> List[T]:
         return list(self.iterable)

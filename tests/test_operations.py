@@ -25,3 +25,11 @@ class TestOperation(unittest.TestCase):
         s.filter(even)
 
         self.assertEqual(s.to_list(), list(range(0, 100, 2)))
+
+    def test_reversed(self):
+        seed = range(100)
+
+        s = Stream(seed)
+        s.reversed()
+
+        self.assertEqual(s.to_list(), list(reversed(range(100))))
