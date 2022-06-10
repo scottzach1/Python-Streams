@@ -82,6 +82,10 @@ class Stream:
         return set(self.iterable)
 
     @_terminal
+    def collect(self, f: Callable[[T], V]) -> V:
+        return f(self.iterable)
+
+    @_terminal
     def reduce(self, f: Callable[[T, T], T]) -> T:
         return functools.reduce(f, self.iterable)
 

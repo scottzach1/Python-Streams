@@ -33,6 +33,13 @@ class TestTerminal(unittest.TestCase):
 
         self.assertEqual(set(seed), s.to_set())
 
+    def test_collect(self):
+        seed = ["a", "b", "c"]
+        collectors = [list, tuple, set]
+
+        for collector in collectors:
+            self.assertEqual(collector(seed), Stream(seed).collect(collector))
+
     def test_reduce(self):
         seed = ["a", "b", "c"]
         s = Stream(seed)
