@@ -109,3 +109,7 @@ class Stream:
     @_terminal
     def find(self, f: Callable[[T], bool], default: T = None) -> Optional[T]:
         return next(filter(f, self.iterable), default)
+
+    @_terminal
+    def first(self):
+        return next(self.iterable)

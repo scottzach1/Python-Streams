@@ -82,3 +82,16 @@ class TestTerminal(unittest.TestCase):
             return text.startswith("b")
 
         self.assertEqual(s.find(find), "beatles")
+
+    def test_first(self):
+        seed = ["a", "b", "c"]
+        s = Stream(seed)
+
+        self.assertEqual(s.first(), "a")
+
+    def test_first_raises(self):
+        seed = []
+        s = Stream(seed)
+
+        with self.assertRaises(StopIteration):
+            s.first()
