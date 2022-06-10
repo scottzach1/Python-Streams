@@ -1,4 +1,4 @@
-from typing import Iterable, TypeVar, Iterator, List
+from typing import Iterable, TypeVar, Iterator, List, Callable
 
 T = TypeVar("T")
 
@@ -11,3 +11,6 @@ class Stream:
 
     def to_list(self) -> List[T]:
         return list(self.iterable)
+
+    def apply(self, f: Callable[[T], T]):
+        self.iterable = (f(t) for t in self.iterable)
