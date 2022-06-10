@@ -4,7 +4,6 @@ from python_streams import Stream
 
 
 class TestStream(unittest.TestCase):
-
     def test_stream_closed(self):
         seed = ["a", "b"]
 
