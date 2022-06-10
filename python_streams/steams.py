@@ -1,8 +1,9 @@
 import functools
 import warnings
-from typing import Iterable, TypeVar, Iterator, List, Callable, Optional
+from typing import Iterable, TypeVar, Iterator, List, Callable, Optional, Tuple, Set
 
 T = TypeVar("T")
+V = TypeVar("V")
 
 
 def _operation(func):
@@ -50,7 +51,7 @@ class Stream:
         self.open = False
 
     @_operation
-    def apply(self, f: Callable[[T], T]) -> "Stream":
+    def apply(self, f: Callable[[T], V]) -> "Stream":
         self.iterable = (f(t) for t in self.iterable)
         return self
 
@@ -69,15 +70,15 @@ class Stream:
         return list(self.iterable)
 
     @_terminal
-    def to_tuple(self):
+    def to_tuple(self) -> Tuple:
         return tuple(self.iterable)
 
     @_terminal
-    def to_iterable(self):
+    def to_iterable(self) -> Iterable[T]:
         return self.iterable
 
     @_terminal
-    def to_set(self):
+    def to_set(self) -> Set[T]:
         return set(self.iterable)
 
     @_terminal
@@ -85,7 +86,7 @@ class Stream:
         return functools.reduce(f, self.iterable)
 
     @_terminal
-    def count(self):
+    def count(self) -> int:
         return sum(1 for _ in self.iterable)
 
     @_terminal
