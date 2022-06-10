@@ -11,6 +11,31 @@ on. Once you have completed your operations, you can then collect the stream int
 - Terminals apply a closing operation to all operations on the `iterator`
 - Once a terminal has been called you may **no longer** apply any operations.
 
+### Operations
+
+| Operation  | Description                                                    |
+|:-----------|:---------------------------------------------------------------|
+| apply()    | Apply a function to each element (acts as a map function).     |
+| filter()   | Filter the elements with a filter function.                    |
+| reversed() | Reverse the elements in the stream (must consume full stream). |
+
+### Terminals
+
+| Terminal      | Description                                                 |
+|:--------------|:------------------------------------------------------------|
+| to_list()     | Collects the elements into a list.                          |
+| to_tuple()    | Collects the elements into a tuple.                         |
+| to_iterable() | Collects the elements into an iterable.                     |
+| to_set()      | Collects the elements into a set.                           |
+| collect()     | Collects the elements by applying function to the iterable. |
+| reduce()      | Reduces the elements to a single value using a function.    |
+| count()       | Counts the number of items in the stream.                   |
+| empty()       | Checks whether the stream is empty.                         |
+| foreach()     | Applies a function for each element bu returns nothing.     |
+| find()        | Finds the first item in stream matching a filter function.  |
+| first()       | Finds the first item in the stream.                         |
+| last()        | Finds the last item in the stream.                          |
+
 ## Usage
 
 ```python
