@@ -20,6 +20,15 @@ class TestStream(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             s.to_list()
 
+    def test_stream_closed_context_manager(self):
+        seed = ["a", "b"]
+
+        with Stream(seed) as stream:
+            stream.apply(lambda c: c)
+
+        with self.assertRaises(RuntimeError):
+            stream.apply(lambda c: c)
+
     def test_apply(self):
         seed = [1, 2, 3]
 
