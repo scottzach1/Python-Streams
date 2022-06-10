@@ -30,3 +30,9 @@ class TestTerminal(unittest.TestCase):
         s = Stream(seed)
 
         self.assertEqual(set(seed), s.to_set())
+
+    def test_reduce(self):
+        seed = ["a", "b", "c"]
+        s = Stream(seed)
+
+        self.assertEqual(s.reduce(str.__add__), "abc")
