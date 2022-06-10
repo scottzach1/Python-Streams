@@ -1,3 +1,5 @@
+import contextlib
+import io
 import unittest
 from typing import Iterable
 
@@ -42,3 +44,13 @@ class TestTerminal(unittest.TestCase):
         s = Stream(seed)
 
         self.assertEqual(s.count(), 100)
+
+    def test_foreach(self):
+        seed = ["a", "b", "c"]
+        s = Stream(seed)
+
+        f = io.StringIO()
+        with contextlib.redirect_stdout(f):
+            s.foreach(lambda n: print(f"_{n}", end=""))
+
+        self.assertEqual(f.getvalue(), "".join((f"_{s}" for s in seed)))

@@ -82,3 +82,8 @@ class Stream:
     @_terminal
     def count(self):
         return sum(1 for _ in self.iterable)
+
+    @_terminal
+    def foreach(self, f: Callable[[T], None]) -> None:
+        for t in self.iterable:
+            f(t)
