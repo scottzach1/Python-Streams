@@ -113,3 +113,6 @@ class Stream:
     @_terminal
     def first(self):
         return next(self.iterable)
+
+    def last(self):
+        return self.reduce(lambda _l, r: r)

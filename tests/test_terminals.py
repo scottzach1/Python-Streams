@@ -95,3 +95,16 @@ class TestTerminal(unittest.TestCase):
 
         with self.assertRaises(StopIteration):
             s.first()
+
+    def test_last(self):
+        seed = ["a", "b", "c"]
+        s = Stream(seed)
+
+        self.assertEqual(s.last(), "c")
+
+    def test_last_raises(self):
+        seed = []
+        s = Stream(seed)
+
+        with self.assertRaises(TypeError):
+            print(s.last())
