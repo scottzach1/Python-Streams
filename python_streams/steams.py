@@ -43,11 +43,27 @@ class Stream:
             warnings.warn("The stream was not closed", RuntimeWarning)
         self.open = False
 
-    @_terminal
-    def to_list(self) -> List[T]:
-        return list(self.iterable)
-
     @_operation
     def apply(self, f: Callable[[T], T]) -> "Stream":
         self.iterable = (f(t) for t in self.iterable)
         return self
+
+    @_terminal
+    def to_list(self) -> List[T]:
+        return list(self.iterable)
+
+    @_terminal
+    def to_tuple(self):
+        return tuple(self.iterable)
+
+    @_terminal
+    def to_iterable(self):
+        return self.iterable
+
+    @_terminal
+    def to_set(self):
+        return set(self.iterable)
+
+    @_terminal
+    def reduce(self, f: Callable[[T], T]) -> T:
+        return functools.reduce(f, self.iterable)

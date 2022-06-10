@@ -5,13 +5,6 @@ from python_streams import Stream
 
 class TestStream(unittest.TestCase):
 
-    def test_to_list(self):
-        seed = ["a", "b"]
-
-        s = Stream(seed)
-
-        self.assertEqual(seed, s.to_list())
-
     def test_stream_closed(self):
         seed = ["a", "b"]
 
@@ -36,17 +29,6 @@ class TestStream(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             stream.apply(lambda c: c)
 
-    def test_apply(self):
-        seed = [1, 2, 3]
-
-        def double(n: int) -> int:
-            return n * 2
-
-        s = Stream(seed)
-        s.apply(double)
-
-        self.assertEqual(s.to_list(), [double(n) for n in seed])
-
     def test_method_chaining(self):
         seed = [1, 2, 3]
 
@@ -56,7 +38,6 @@ class TestStream(unittest.TestCase):
         with Stream(seed) as s1:
             s1.apply(double)
             s1.apply(double)
-
             res1 = s1.to_list()
 
         with Stream(seed) as s2:
