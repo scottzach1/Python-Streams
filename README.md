@@ -63,3 +63,29 @@ with Stream(seed) as s:
 
 assert l == [13, 23, 33, 43]
 ```
+
+## Installation
+
+As this project is just a proof of concept, it has not been published.
+
+If you are feeling particularly spicy, you may choose to install it in your project with pip by running the following:
+
+```bash
+pip install git+https://github.com/scottzach1/python-streams.git#egg=python-streams
+```
+
+Or alternatively by adding the following to your `requirements.txt` file.
+
+```bash
+python-streams @ git+https://github.com/scottzach1/python-streams.git
+```
+
+## Author
+
+## Team
+
+This package is developed and maintained by the following person(s).
+
+| [![Zac Scott](https://avatars2.githubusercontent.com/u/38968222?v=3&s=70)](https://github.com/scottzach1) |
+|-----------------------------------------------------------------------------------------------------------|
+| [Zac Scott](https://github.com/scottzach1)                                                                |
